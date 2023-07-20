@@ -31,6 +31,7 @@ h1 {
   text-align: center;
 }
 #login {
+  color: white;
   visibility: visible;
 }
 #generator {
@@ -38,7 +39,29 @@ h1 {
 }
 form {
   text-align: center;
-  color: white;
   display: grid;
   justify-content: center;
+}
+#newPass {
+  margin-top: 15%;
+  color: black;
+}
+#messages {
+  color: white;
+  position: absolute;
+  z-index: 1;
+  left: 100px;
+}
+#addPass {
+  background-color: white ;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
 }

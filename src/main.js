@@ -6,6 +6,9 @@ let newpass = document.getElementById("newpass")
 let SavePass = document.getElementById("SavePass")
 let passForm = document.getElementById("pwd")
 let usserForm = document.getElementById("username")
+let AddPassElement = document.getElementById("AddPass")
+let AddNameElement = document.getElementById("PasswordName")
+
 
 
 let passwordElement = document.getElementById("password")
@@ -24,11 +27,18 @@ function newpassword(length) {
   }
   passwordElement.innerHTML = createdPassword
 }
+class Passwords {
+  constructor(name, password) {
+    this.name = name
+    this.password = password
+  }
+}
 newpass.addEventListener("click", function() {
-  newpassword(10)
+  document.getElementById("addPass").style.visibility = "visible"
+
 });
 passForm.addEventListener("change", function(e) {
-  if (e.target.value === "r4e4ndk2k5") {
+  if (e.target.value.toLowerCase() === "r4e4ndk2k5") {
     PassUnlocked = true;
   }
   if (PassUnlocked && UserUnlocked) {
@@ -38,7 +48,7 @@ passForm.addEventListener("change", function(e) {
 });
 usserForm.addEventListener("change", function(e) {
   console.log(e.target.value)
-  if (e.target.value === "Judemakes") {
+  if (e.target.value.toLowerCase() === "judemakes") {
     UserUnlocked = true;
   }
   if (PassUnlocked && UserUnlocked) {
@@ -46,3 +56,23 @@ usserForm.addEventListener("change", function(e) {
     document.getElementById("login").style.visibility = "hidden"
   }
 });
+let CurrentPassName = ""
+let passwords = []
+AddNameElement.addEventListener("change", function(e) {
+  CurrentPassName = e.target.value;
+});
+AddPassElement.addEventListener("change", function(e) {
+  passwords.push(new Passwords(CurrentPassName, e.target.value))
+  console.log(passwords)
+});
+
+function loop() {
+  for (let i = 0; i < passwords.length; i++) {
+    var displayPassword = document.createElement('div');
+    displayPassword.innerHTML = passwords[i].name + " " + passwords[i].password
+    document.getElementById('messages').appendChild(displayPassword);
+    console.log(displayPassword)
+  }
+  requestAnimationFrame(loop)
+}
+loop();
