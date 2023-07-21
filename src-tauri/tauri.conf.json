@@ -10,9 +10,10 @@
     "productName": "PasswordManager",
     "version": "0.0.0"
   },
+  
   "tauri": {
     "allowlist": {
-      "all": false,
+      "all": true,
       "shell": {
         "all": false,
         "open": true
@@ -31,8 +32,7 @@
       ]
     },
     "security": {
-      "csp": null
-    },
+      "csp": "default-src data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline';"    },
     "windows": [
       {
         "fullscreen": false,
