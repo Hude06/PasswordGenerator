@@ -79,11 +79,10 @@ loop();
 
 function sendDataToServer(data) {
   console.log(data)
-  const url = 'http://apps.hude.earth:3000/data';
+  const url = 'http://localhost:3000/data';
   fetch(url, {
       method: 'POST',
       headers: {
-        "Access-Control-Allow-Origin": "*",
           'Content-Type': 'text/plain' // Use text/plain for a simple string
       },
       body: data // Send the string directly without JSON.stringify

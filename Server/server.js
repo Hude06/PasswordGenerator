@@ -7,6 +7,11 @@ const app = express();
 const port = 3000; // Use the correct port here
 app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
+app.use(
+  cors({
+    origin: 'http://127.0.0.1:3000',
+  })
+);
 
 // Handle preflight requests
 app.options('/data', cors()); // Adjust the route to match your actual route
@@ -14,10 +19,9 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 // Sample route to handle incoming data
 app.post('/data', (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
   const receivedDataString = req.body;
   const filename = `./data_${Date.now()}.txt`;
-  fs.writeFile(filename, receivedDataString, (err) => {
+  fs.writeFile(filename, receivedDataString``, (err) => {
     console.log('Ran')
     if (err) {
       console.error('Error writing to the file:', err);
