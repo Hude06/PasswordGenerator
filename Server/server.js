@@ -8,6 +8,7 @@ const port = 3000; // Use the correct port here
 app.use(bodyParser.text());
 app.use(cors());
 // CORS middleware to allow requests from http://127.0.0.1:1430
+
 // Handle preflight requests
 app.options('/data', cors()); // Adjust the route to match your actual route
 
