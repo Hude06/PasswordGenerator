@@ -27,6 +27,7 @@ app.post('/data', (req, res) => {
   // Process the data as per your requirements
 
   // Send a response back if needed
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json({ message: 'Data received successfully!' });
 });
 
