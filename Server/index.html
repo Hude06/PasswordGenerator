@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Data to Smile.js Server</title>
+</head>
+<body>
+    <h1>Send Data to Smile.js Server</h1>
+    <form id="dataForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+        <br>
+        <button type="submit">Send Data</button>
+    </form>
+
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', 
+function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            sendDataToServer(data);
+        });
+
+        function sendDataToServer(data) {
+            const url = 'http://localhost:3000/data';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                console.log('Server response:', responseData);
+            })
+            .catch(error => {
+                console.error('Error sending data:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+

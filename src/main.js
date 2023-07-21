@@ -3,7 +3,6 @@ let UserUnlocked = false;
 
 let createdPassword = "";
 let newpass = document.getElementById("newpass")
-let SavePass = document.getElementById("SavePass")
 let passForm = document.getElementById("pwd")
 let usserForm = document.getElementById("username")
 let AddPassElement = document.getElementById("AddPass")
@@ -63,16 +62,16 @@ AddNameElement.addEventListener("change", function(e) {
 });
 AddPassElement.addEventListener("change", function(e) {
   passwords.push(new Passwords(CurrentPassName, e.target.value))
-  console.log(passwords)
+  addPasswordToList(passwords.length-1);
+  document.getElementById("form").reset();
 });
-
+function addPasswordToList(num) {
+  var displayPassword = document.createElement('div');
+  displayPassword.innerHTML = passwords[num].name + " " + passwords[num].password
+  document.getElementById('messages').appendChild(displayPassword);
+  document.getElementById("addPass").style.visibility = "hidden"
+}
 function loop() {
-  for (let i = 0; i < passwords.length; i++) {
-    var displayPassword = document.createElement('div');
-    displayPassword.innerHTML = passwords[i].name + " " + passwords[i].password
-    document.getElementById('messages').appendChild(displayPassword);
-    console.log(displayPassword)
-  }
   requestAnimationFrame(loop)
 }
 loop();
