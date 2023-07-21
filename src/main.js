@@ -79,7 +79,7 @@ loop();
 
 function sendDataToServer(data) {
   console.log(data)
-  const url = 'http://localhost:3000/data';
+  const url = 'http://apps.hude.earth/3000/data';
   fetch(url, {
       method: 'POST',
       headers: {
