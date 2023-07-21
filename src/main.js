@@ -7,6 +7,7 @@ let usserForm = document.getElementById("username")
 let AddPassElement = document.getElementById("AddPass")
 let AddNameElement = document.getElementById("PasswordName")
 let passwordElement = document.getElementById("password")
+let user = "judemakes"
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
@@ -70,16 +71,9 @@ function addPasswordToList(num) {
   document.getElementById("addPass").style.visibility = "hidden"
 
 }
-function loop() {
-  requestAnimationFrame(loop)
-}
-
-loop();
-
-
 function sendDataToServer(data) {
   console.log(data)
-  const url = 'http://localhost:1430/data';
+  const url = 'http://localhost:3000/data';
   fetch(url, {
       method: 'POST',
       headers: {
