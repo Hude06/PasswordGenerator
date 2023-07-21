@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = 3000; // Use the correct port here
+const port = 1431; // Use the correct port here
 app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
 app.use(
@@ -28,6 +28,12 @@ app.post('/data', (req, res) => {
     } else {
       console.log('Folder created successfully!');
     }
+  });
+  app.get('/getData', (req, res) => {
+    // Replace the following line with the actual data you want to send
+    const responseData = { message: 'Hello from the server!' };
+  
+    res.json(responseData);
   });
   const filename = `./judemakes/data_${Date.now()}.txt`;
   const split = receivedDataString.split(" "); 

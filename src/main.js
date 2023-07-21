@@ -66,13 +66,14 @@ AddPassElement.addEventListener("change", function(e) {
 function addPasswordToList(num) {
   var displayPassword = document.createElement('div');
   displayPassword.innerHTML = passwords[num].name + " " + passwords[num].password
+  getDataFromServer();
   sendDataToServer(passwords[num].name + " " + passwords[num].password)
   document.getElementById('messages').appendChild(displayPassword);
   document.getElementById("addPass").style.visibility = "hidden"
 }
 function sendDataToServer(data) {
   console.log(data)
-  const url = 'http://127.0.0.1:3000/data';
+  const url = 'http://127.0.0.1:1431/data';
   fetch(url, {
       method: 'POST',
       headers: {
@@ -87,4 +88,17 @@ function sendDataToServer(data) {
   .catch(error => {
       console.error('Error sending data:', error);
   });
+}
+function getDataFromServer() {
+  console.log("Gettiin Data from server")
+  const url = 'http://127.0.0.1:1431/getData';
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Data received from server:', data);
+      // Process the data as needed
+    })
+    .catch(error => {
+      console.error('Error fetching data from server:', error);
+    });
 }
