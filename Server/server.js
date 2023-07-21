@@ -9,7 +9,7 @@ app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://127.0.0.1:1430',
   })
 );
 
@@ -19,9 +19,8 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 // Sample route to handle incoming data
 const CryptoJS = require("crypto-js");
-
-
 app.post('/data', (req, res) => {
+  res.json({ message: 'Data received successfully!' });
   const receivedDataString = req.body;
   fs.mkdir("./judemakes", { recursive: true }, (err) => {
     if (err) {
@@ -31,7 +30,10 @@ app.post('/data', (req, res) => {
     }
   });
   const filename = `./judemakes/data_${Date.now()}.txt`;
-  var encrypted = CryptoJS.AES.encrypt(receivedDataString, "55uk8h3X").toString();
+  const split = receivedDataString.split(" "); 
+  const json = (JSON.stringify({ Username: split[0], Password: split[1] }));
+
+  var encrypted = CryptoJS.AES.encrypt(json, "55uk8h3X").toString();
 
   fs.writeFile(filename, encrypted, (err) => {
     console.log('Ran')
@@ -41,13 +43,7 @@ app.post('/data', (req, res) => {
       console.log('Data successfully written to the file.');
     }
   });
-  // Process the data as per your requirements
-
-  // Send a response back if needed
-  res.json({ message: 'Data received successfully!' });
 });
-// var decrypted = CryptoJS.AES.decrypt(encrypted, "55uk8h3X");
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

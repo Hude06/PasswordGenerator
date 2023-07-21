@@ -53,7 +53,6 @@ usserForm.addEventListener("change", function(e) {
   }
 });
 let CurrentPassName = ""
-
 let passwords = []
 AddNameElement.addEventListener("change", function(e) {
   CurrentPassName = e.target.value;
@@ -73,7 +72,7 @@ function addPasswordToList(num) {
 }
 function sendDataToServer(data) {
   console.log(data)
-  const url = 'http://localhost:3000/data';
+  const url = 'http://127.0.0.1:3000/data';
   fetch(url, {
       method: 'POST',
       headers: {
