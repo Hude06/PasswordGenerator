@@ -70,7 +70,7 @@ function addPasswordToList(num,server) {
 }
 function sendDataToServer(data) {
   console.log("Sending Data is " + data)
-  const url = 'https://apps.hude.earth:1431/data';
+  const url = 'http://127.0.0.1:1431/data';
   fetch(url, {
       method: 'POST',
       headers: {

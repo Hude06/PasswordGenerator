@@ -11,7 +11,7 @@ app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
 app.use(
   cors({
-    origin: 'https://apps.hude.earth:1430',
+    origin: 'http://127.0.0.1:1430',
   })
 );
 
@@ -22,10 +22,8 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 
 app.post('/data', (req, res) => {
-  fs.readFile('./judemakes/data.txt', 'utf8', (err, data) => {
-    var bytes  = CryptoJS.AES.decrypt(data, '55uk8h3X');
-    var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-    res.json({ message: decryptedData });
+  fs.readFile('./judemakes/data.txt', 'utf8', (err, data) => {    
+    res.json({ message: data });
   });
   const receivedDataString = req.body;
   if (receivedDataString === "") {
@@ -39,13 +37,10 @@ app.post('/data', (req, res) => {
       } else {
       }
     });
-    const filename = `./judemakes/data.txt`;
+    const filename = `./judemakes/data.txt`;    
     const split = receivedDataString.split(" "); 
     const json = (JSON.stringify({ Username: split[0], Password: split[1] }));
-  
-    var encrypted = CryptoJS.AES.encrypt(json, "55uk8h3X");
-  
-    fs.writeFile(filename, encrypted.toString(), (err) => {
+    fs.writeFile(filename, json, (err) => {
       if (err) {
         console.error('Error writing to the file:', err);
       } else {
