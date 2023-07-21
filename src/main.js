@@ -83,6 +83,7 @@ function sendDataToServer(data) {
   fetch(url, {
       method: 'POST',
       headers: {
+        "Access-Control-Allow-Origin": "*",
           'Content-Type': 'text/plain' // Use text/plain for a simple string
       },
       body: data // Send the string directly without JSON.stringify

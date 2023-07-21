@@ -14,6 +14,7 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 // Sample route to handle incoming data
 app.post('/data', (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const receivedDataString = req.body;
   const filename = `./data_${Date.now()}.txt`;
   fs.writeFile(filename, receivedDataString, (err) => {
@@ -27,7 +28,6 @@ app.post('/data', (req, res) => {
   // Process the data as per your requirements
 
   // Send a response back if needed
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json({ message: 'Data received successfully!' });
 });
 
