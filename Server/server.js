@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const CryptoJS = require("crypto-js");
+
 
 const app = express();
 const port = 1431; // Use the correct port here
@@ -18,7 +20,7 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 
 // Sample route to handle incoming data
 // Sample route to handle incoming data
-const CryptoJS = require("crypto-js");
+
 app.post('/data', (req, res) => {
   fs.readFile('./judemakes/data.txt', 'utf8', (err, data) => {
     var bytes  = CryptoJS.AES.decrypt(data, '55uk8h3X');

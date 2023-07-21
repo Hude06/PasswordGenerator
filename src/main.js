@@ -8,6 +8,7 @@ let AddPassElement = document.getElementById("AddPass")
 let AddNameElement = document.getElementById("PasswordName")
 let passwordElement = document.getElementById("password")
 let user = "judemakes"
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
@@ -34,7 +35,7 @@ newpass.addEventListener("click", function() {
 
 });
 passForm.addEventListener("change", function(e) {
-  if (e.target.value.toLowerCase() === "r4e4ndk2k5") {
+  if ((e.target.value.toLowerCase()) === "r4e4ndk2k5") {
     PassUnlocked = true;
   }
   if (PassUnlocked && UserUnlocked) {
@@ -43,7 +44,7 @@ passForm.addEventListener("change", function(e) {
   }
 });
 usserForm.addEventListener("change", function(e) {
-  if (e.target.value.toLowerCase() === "judemakes") {
+  if (e.target.value.toLowerCase() === user) {
     UserUnlocked = true;
   }
   if (PassUnlocked && UserUnlocked) {
