@@ -4,12 +4,12 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = 3000; // Use the correct port here
+const port = 1430; // Use the correct port here
 app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
 app.use(
   cors({
-    origin: 'http://127.0.0.1:3000',
+    origin: 'http://127.0.0.1:1430',
   })
 );
 
@@ -20,8 +20,10 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 app.post('/data', (req, res) => {
   const receivedDataString = req.body;
-  const filename = `./data_${Date.now()}.txt`;
-  fs.writeFile(filename, receivedDataString``, (err) => {
+  console.log('Received data as string:', receivedDataString);
+  console.log('Ran')
+
+  fs.writeFile("./data.txt", receivedDataString, (err) => {
     console.log('Ran')
     if (err) {
       console.error('Error writing to the file:', err);
