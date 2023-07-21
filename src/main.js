@@ -53,6 +53,7 @@ usserForm.addEventListener("change", function(e) {
   }
 });
 let CurrentPassName = ""
+
 let passwords = []
 AddNameElement.addEventListener("change", function(e) {
   CurrentPassName = e.target.value;
@@ -69,7 +70,6 @@ function addPasswordToList(num) {
   sendDataToServer(passwords[num].name + " " + passwords[num].password)
   document.getElementById('messages').appendChild(displayPassword);
   document.getElementById("addPass").style.visibility = "hidden"
-
 }
 function sendDataToServer(data) {
   console.log(data)
