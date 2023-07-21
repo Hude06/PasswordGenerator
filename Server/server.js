@@ -11,7 +11,7 @@ app.use(bodyParser.text());
 // CORS middleware to allow requests from http://127.0.0.1:1430
 app.use(
   cors({
-    origin: 'http://127.0.0.1:1430',
+    origin: 'http://apps.hude.earth:1431/data',
   })
 );
 
