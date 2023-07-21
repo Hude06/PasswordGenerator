@@ -47,10 +47,6 @@ usserForm.addEventListener("change", function(e) {
   if (e.target.value.toLowerCase() === user) {
     UserUnlocked = true;
   }
-  if (PassUnlocked && UserUnlocked) {
-    document.getElementById("generator").style.visibility = "visible"
-    document.getElementById("login").style.visibility = "hidden"
-  }
 });
 let CurrentPassName = ""
 let passwords = []
@@ -97,8 +93,15 @@ function sendDataToServer(data) {
   });
 
 }
-
+function loop() {
+  if (PassUnlocked && UserUnlocked) {
+    document.getElementById("generator").style.visibility = "visible"
+    document.getElementById("login").style.visibility = "hidden"
+  }
+  requestAnimationFrame(loop)
+}
 function init() {
   sendDataToServer();
+  loop();
 }
 init();
