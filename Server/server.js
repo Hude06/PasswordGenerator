@@ -20,35 +20,36 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 // Sample route to handle incoming data
 const CryptoJS = require("crypto-js");
 app.post('/data', (req, res) => {
-  res.json({ message: 'Data received successfully!' });
+  fs.readFile('./judemakes/data.txt', 'utf8', (err, data) => {
+    var bytes  = CryptoJS.AES.decrypt(data, '55uk8h3X');
+    var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    res.json({ message: decryptedData });
+  });
   const receivedDataString = req.body;
-  fs.mkdir("./judemakes", { recursive: true }, (err) => {
-    if (err) {
-      console.error('Error creating folder:', err);
-    } else {
-      console.log('Folder created successfully!');
-    }
-  });
-  app.get('/getData', (req, res) => {
-    // Replace the following line with the actual data you want to send
-    const responseData = { message: 'Hello from the server!' };
+  if (receivedDataString === "") {
+    console.log("Ruturning")
+    return
+  } else {
+    console.log("We are runniing the loop")
+    fs.mkdir("./judemakes", { recursive: true }, (err) => {
+      if (err) {
+        console.error('Error creating folder:', err);
+      } else {
+      }
+    });
+    const filename = `./judemakes/data.txt`;
+    const split = receivedDataString.split(" "); 
+    const json = (JSON.stringify({ Username: split[0], Password: split[1] }));
   
-    res.json(responseData);
-  });
-  const filename = `./judemakes/data_${Date.now()}.txt`;
-  const split = receivedDataString.split(" "); 
-  const json = (JSON.stringify({ Username: split[0], Password: split[1] }));
-
-  var encrypted = CryptoJS.AES.encrypt(json, "55uk8h3X").toString();
-
-  fs.writeFile(filename, encrypted, (err) => {
-    console.log('Ran')
-    if (err) {
-      console.error('Error writing to the file:', err);
-    } else {
-      console.log('Data successfully written to the file.');
-    }
-  });
+    var encrypted = CryptoJS.AES.encrypt(json, "55uk8h3X");
+  
+    fs.writeFile(filename, encrypted.toString(), (err) => {
+      if (err) {
+        console.error('Error writing to the file:', err);
+      } else {
+      }
+    });
+  }
 });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

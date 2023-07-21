@@ -43,7 +43,6 @@ passForm.addEventListener("change", function(e) {
   }
 });
 usserForm.addEventListener("change", function(e) {
-  console.log(e.target.value)
   if (e.target.value.toLowerCase() === "judemakes") {
     UserUnlocked = true;
   }
@@ -59,20 +58,21 @@ AddNameElement.addEventListener("change", function(e) {
 });
 AddPassElement.addEventListener("change", function(e) {
   passwords.push(new Passwords(CurrentPassName, e.target.value))
-  addPasswordToList(passwords.length-1);
+  addPasswordToList(passwords.length-1,true);
   document.getElementById("form").reset();
 
 });
-function addPasswordToList(num) {
+function addPasswordToList(num,server) {
   var displayPassword = document.createElement('div');
   displayPassword.innerHTML = passwords[num].name + " " + passwords[num].password
-  getDataFromServer();
-  sendDataToServer(passwords[num].name + " " + passwords[num].password)
+  if (server) {
+    sendDataToServer(passwords[num].name + " " + passwords[num].password)
+  }
   document.getElementById('messages').appendChild(displayPassword);
   document.getElementById("addPass").style.visibility = "hidden"
 }
 function sendDataToServer(data) {
-  console.log(data)
+  console.log("Sending Data is " + data)
   const url = 'http://127.0.0.1:1431/data';
   fetch(url, {
       method: 'POST',
@@ -81,24 +81,23 @@ function sendDataToServer(data) {
       },
       body: data // Send the string directly without JSON.stringify
   })
-  .then(response => response.text()) // Use response.text() to get the server's response as a string
+
+  .then(response => response.json()) // Use response.text() to get the server's response as a string
   .then(responseData => {
-      console.log('Server response:', responseData);
+    if (responseData !== "undefined") {
+      console.log(responseData)
+      let ParsedJSON = JSON.parse(responseData.message)
+      passwords.push(new Passwords(ParsedJSON.Username,ParsedJSON.Password))
+      addPasswordToList(passwords.length-1,false);
+    }
   })
   .catch(error => {
       console.error('Error sending data:', error);
   });
+
 }
-function getDataFromServer() {
-  console.log("Gettiin Data from server")
-  const url = 'http://127.0.0.1:1431/getData';
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log('Data received from server:', data);
-      // Process the data as needed
-    })
-    .catch(error => {
-      console.error('Error fetching data from server:', error);
-    });
+
+function init() {
+  sendDataToServer();
 }
+init();
