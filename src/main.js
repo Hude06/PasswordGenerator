@@ -9,6 +9,10 @@ let AddNameElement = document.getElementById("PasswordName")
 let passwordElement = document.getElementById("password")
 let user = "judemakes"
 let password = "r4e4ndk2k5"
+document.getElementById("RandomPassword").addEventListener("click", function(e) {
+  console.log("Clicked on")
+  document.getElementById("randompass").innerHTML = (newpassword(10))
+});
 document.getElementById("SecurePassword").addEventListener("change", function(e) {
   password = e.target.value.toLowerCase()
   document.getElementById("newLoginWindow").style.visibility = "hidden"
@@ -31,7 +35,7 @@ function newpassword(length) {
   for (let i = 0; i < length/2; i++) {
     createdPassword += "" +(getRndInteger(0,9)) + generateRandomLetter()
   }
-  passwordElement.innerHTML = createdPassword
+  return(createdPassword)
 }
 class Passwords {
   constructor(name, password) {
@@ -41,6 +45,7 @@ class Passwords {
 }
 newpass.addEventListener("click", function() {
   document.getElementById("addPass").style.visibility = "visible"
+  document.getElementById("newpass").style.visibility = "hidden"
 
 });
 let newLoginVisible = false;

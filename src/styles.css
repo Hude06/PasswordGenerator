@@ -35,6 +35,16 @@ h1 {
   color: white;
   visibility: visible;
 }
+#RandomPassword {
+  position: absolute;
+  z-index: 1;
+  left: 38%;
+  top: 55%;
+}
+h3 {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
 #newLoginWindow {
   border-radius: 4%;
   background-color: white ;
