@@ -36,6 +36,7 @@ h1 {
   visibility: visible;
 }
 #newLoginWindow {
+  border-radius: 4%;
   background-color: white ;
   visibility: hidden;
   position: absolute;
@@ -96,6 +97,7 @@ form {
   font-family: 'Roboto', sans-serif;
 }
 #addPass {
+  border-radius: 4%;
   background-color: white ;
   visibility: hidden;
   position: absolute;
