@@ -29,6 +29,7 @@ button {
 h1 {
   color: white;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 #login {
   color: white;
@@ -37,7 +38,15 @@ h1 {
 #generator {
   visibility: hidden;
 }
+label {
+  font-size: 30px;
+}
+input {
+  width: 200px;
+  height: 25px;
+}
 form {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   display: grid;
   justify-content: center;
@@ -47,10 +56,12 @@ form {
   color: black;
 }
 #messages {
+  visibility: hidden;
   color: white;
   position: absolute;
   z-index: 1;
   left: 100px;
+  font-family: 'Roboto', sans-serif;
 }
 #addPass {
   background-color: white ;

@@ -41,6 +41,7 @@ passForm.addEventListener("change", function(e) {
   if (PassUnlocked && UserUnlocked) {
     document.getElementById("generator").style.visibility = "visible"
     document.getElementById("login").style.visibility = "hidden"
+    document.getElementById("messages").style.visibility = "visible"
   }
 });
 usserForm.addEventListener("change", function(e) {
