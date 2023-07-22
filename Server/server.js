@@ -20,9 +20,8 @@ app.options('/data', cors()); // Adjust the route to match your actual route
 
 // Sample route to handle incoming data
 // Sample route to handle incoming data
-
 app.post('/data', (req, res) => {
-  fs.readFile('./judemakes/data.txt', 'utf8', (err, data) => {    
+  fs.readFile('./judemakes/data.json', 'utf8', (err, data) => {    
     res.json({ message: data });
   });
   const receivedDataString = req.body;
@@ -37,7 +36,7 @@ app.post('/data', (req, res) => {
       } else {
       }
     });
-    const filename = `./judemakes/data.txt`;    
+    const filename = `./judemakes/data.json`;    
     const split = receivedDataString.split(" "); 
     const json = (JSON.stringify({ Username: split[0], Password: split[1] }));
     fs.writeFile(filename, json, (err) => {

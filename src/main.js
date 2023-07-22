@@ -81,6 +81,7 @@ function sendDataToServer(data) {
 
   .then(response => response.json()) // Use response.text() to get the server's response as a string
   .then(responseData => {
+    console.log("Data",responseData)
     if (responseData !== "undefined") {
       console.log(responseData)
       let ParsedJSON = JSON.parse(responseData.message)
@@ -98,6 +99,7 @@ function loop() {
     document.getElementById("generator").style.visibility = "visible"
     document.getElementById("login").style.visibility = "hidden"
   }
+  console.log(passwords)
   requestAnimationFrame(loop)
 }
 function init() {
