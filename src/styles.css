@@ -35,6 +35,31 @@ h1 {
   color: white;
   visibility: visible;
 }
+#newLoginWindow {
+  background-color: white ;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+.newLogin {
+  border: 2px solid black;
+  border-radius: 20px;
+  text-align: centerx;
+
+}
+#newLoginForm {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  margin-top: 20%;
+}
 #generator {
   visibility: hidden;
 }
@@ -54,6 +79,13 @@ form {
 #newPass {
   margin-top: 15%;
   color: black;
+}
+#newLogin {
+  position: absolute;
+  z-index: 1;
+  font-size: 100px;
+  left: 10px;
+  top: -10px;
 }
 #messages {
   visibility: hidden;

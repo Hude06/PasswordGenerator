@@ -8,8 +8,15 @@
   <script type="module" src="main.js"></script>
 </head>
 <body>
+  <div id = "newLoginWindow">
+    <form id = "newLoginForm">
+      <label>Username</label><br>
+      <input class = "newLogin"type="text" id="NewUsernameLogin"><br>
+      <label>Secure Password</label><br>
+      <input class = "newLogin"type="text" id="SecurePassword"><br><br>
+    </form>
+  </div>
   <div id = messages>
-
   </div>
   <div id = "addPass">
     <div id = "newPass">
@@ -27,6 +34,7 @@
     <button id = "newpass">Add New</button>
   </div>
   <div id = "login">
+    <div id = "newLogin">+</div>
     <form>
       <label for="username">Username:</label><br>
       <input type="text" id="username" name="username"><br>

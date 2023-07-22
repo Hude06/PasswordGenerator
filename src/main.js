@@ -34,6 +34,17 @@ newpass.addEventListener("click", function() {
   document.getElementById("addPass").style.visibility = "visible"
 
 });
+let newLoginVisible = false;
+document.getElementById("newLogin").addEventListener("click", function() {
+  console.log("Div element is clicked!");
+  newLoginVisible = !newLoginVisible
+  console.log(newLoginVisible)
+  if (newLoginVisible) {
+    document.getElementById("newLoginWindow").style.visibility = "visible"
+  } else {
+    document.getElementById("newLoginWindow").style.visibility = "hidden"
+  }
+});
 passForm.addEventListener("change", function(e) {
   if ((e.target.value.toLowerCase()) === "r4e4ndk2k5") {
     PassUnlocked = true;
@@ -100,7 +111,6 @@ function loop() {
     document.getElementById("generator").style.visibility = "visible"
     document.getElementById("login").style.visibility = "hidden"
   }
-  console.log(passwords)
   requestAnimationFrame(loop)
 }
 function init() {
