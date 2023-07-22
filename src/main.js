@@ -8,7 +8,16 @@ let AddPassElement = document.getElementById("AddPass")
 let AddNameElement = document.getElementById("PasswordName")
 let passwordElement = document.getElementById("password")
 let user = "judemakes"
+let password = "r4e4ndk2k5"
+document.getElementById("SecurePassword").addEventListener("change", function(e) {
+  password = e.target.value.toLowerCase()
+  document.getElementById("newLoginWindow").style.visibility = "hidden"
 
+});
+document.getElementById("NewUsernameLogin").addEventListener("change", function(e) {
+  user = e.target.value.toLowerCase()
+
+});
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
@@ -46,7 +55,7 @@ document.getElementById("newLogin").addEventListener("click", function() {
   }
 });
 passForm.addEventListener("change", function(e) {
-  if ((e.target.value.toLowerCase()) === "r4e4ndk2k5") {
+  if ((e.target.value.toLowerCase()) === password) {
     PassUnlocked = true;
   }
   if (PassUnlocked && UserUnlocked) {

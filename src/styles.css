@@ -50,7 +50,7 @@ h1 {
 .newLogin {
   border: 2px solid black;
   border-radius: 20px;
-  text-align: centerx;
+  text-align: center;
 
 }
 #newLoginForm {
